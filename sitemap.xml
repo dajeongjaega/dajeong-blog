@@ -3,21 +3,31 @@
   <url>
     <loc>https://dajeongjaega.github.io/dajeong-blog/</loc>
     <lastmod>2026-11-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://dajeongjaega.github.io/dajeong-blog/post.html?slug=visiting-care-fee-2027</loc>
     <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dajeongjaega.github.io/dajeong-blog/post.html?slug=screening-documents-list</loc>
     <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dajeongjaega.github.io/dajeong-blog/post.html?slug=about-home-care-center</loc>
     <lastmod>2026-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dajeongjaega.github.io/dajeong-blog/post.html?slug=about-dajeong-center</loc>
     <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
