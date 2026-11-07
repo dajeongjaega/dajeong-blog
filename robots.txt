@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dajungjaega.github.io/dajeong-blog/sitemap.xml
