@@ -357,6 +357,67 @@ a:hover {
   padding: 2rem 0;
 }
 
+/* 미니 웹앱 카드 */
+.apps-section {
+  border-top: 1px solid var(--border);
+}
+
+.apps-section-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 3rem;
+}
+
+.apps-heading {
+  margin: 0 0 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.apps-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.app-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.app-card-link {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+}
+
+.app-card-preview {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.app-card-body {
+  padding: 1rem 1.1rem 1.2rem;
+}
+
+.app-card-title {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.app-card-desc {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
 /* 글 상세 */
 .post-header {
   margin-bottom: 2rem;
@@ -547,5 +608,9 @@ a:hover {
 
   .post-card-title {
     font-size: 1.15rem;
+  }
+
+  .apps-grid {
+    grid-template-columns: 1fr;
   }
 }

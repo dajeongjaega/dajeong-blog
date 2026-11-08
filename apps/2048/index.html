@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2048</title>
+<meta name="description" content="방향키 또는 스와이프로 타일을 밀어 2048을 만드는 퍼즐 게임">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game-wrap">
+    <header class="game-header">
+      <h1 class="game-title">2048</h1>
+      <button type="button" id="themeToggle" class="theme-toggle" aria-label="다크 모드로 전환">🌙</button>
+    </header>
+
+    <div class="score-row">
+      <div class="score-box">
+        <div class="score-label">SCORE</div>
+        <div class="score-value" id="scoreValue">0</div>
+      </div>
+      <div class="score-box">
+        <div class="score-label">BEST</div>
+        <div class="score-value" id="bestValue">0</div>
+      </div>
+      <button type="button" id="newGameBtn" class="new-game-btn">새 게임</button>
+    </div>
+
+    <p class="instructions">방향키 또는 스와이프로 타일을 밀어 2048을 만드세요.</p>
+
+    <div class="board-wrap">
+      <div class="board" id="board">
+        <div class="grid-cells" id="gridCells"></div>
+        <div class="tile-container" id="tileContainer"></div>
+
+        <div class="overlay" id="gameOverOverlay" hidden>
+          <div class="overlay-inner">
+            <p class="overlay-title">게임 오버!</p>
+            <p class="overlay-desc" id="finalScoreText">최종 점수: 0</p>
+            <button type="button" id="restartBtn" class="overlay-btn">다시 시작</button>
+          </div>
+        </div>
+
+        <div class="overlay" id="winOverlay" hidden>
+          <div class="overlay-inner">
+            <p class="overlay-title">승리!</p>
+            <p class="overlay-desc">2048 타일을 만들었습니다!</p>
+            <div class="overlay-btn-row">
+              <button type="button" id="keepPlayingBtn" class="overlay-btn">계속하기</button>
+              <button type="button" id="winNewGameBtn" class="overlay-btn overlay-btn-secondary">새 게임</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="game-footer">
+      <p>← ↑ → ↓ 방향키로 조작 · 모바일에서는 스와이프로 플레이할 수 있습니다.</p>
+    </footer>
+  </div>
+
+<script src="game.js"></script>
+</body>
+</html>
