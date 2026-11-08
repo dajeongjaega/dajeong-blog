@@ -327,9 +327,13 @@ a:hover {
   justify-content: center;
   background: linear-gradient(135deg, var(--hero-grad-start), var(--hero-grad-end));
   color: var(--tag-bg);
-  font-size: 2rem;
-  font-weight: 700;
-  font-family: 'Gowun Dodum', var(--font-sans);
+}
+
+.post-card-thumb-placeholder svg {
+  width: 42%;
+  height: 42%;
+  max-width: 56px;
+  max-height: 56px;
 }
 
 .post-card-body {

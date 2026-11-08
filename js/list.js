@@ -8,11 +8,38 @@
     return d.toLocaleDateString("ko-KR", { year: "numeric", month: "long", day: "numeric" });
   }
 
+  // 카테고리별 플레이스홀더 아이콘 (사진이 없는 글에 표시)
+  const CATEGORY_ICONS = {
+    센터소개: `<svg viewBox="0 0 120 120" role="img" aria-label="다정재가복지센터 로고">
+      <circle cx="36" cy="20" r="9" fill="#E8735A"/>
+      <circle cx="84" cy="20" r="9" fill="#F2A97A"/>
+      <path d="M58 106 L58 58 C54 46 46 40 36 40 C20 40 14 58 22 72 C28 84 42 96 58 106Z" fill="#E8735A"/>
+      <path d="M62 106 L62 58 C66 46 74 40 84 40 C100 40 106 58 98 72 C92 84 78 96 62 106Z" fill="#F2A97A"/>
+    </svg>`,
+    운영준비: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="체크리스트">
+      <rect x="5" y="4" width="14" height="17" rx="2"/>
+      <rect x="9" y="2.3" width="6" height="3" rx="1"/>
+      <path d="M8.3 11.2l1.4 1.4 2.6-2.8"/>
+      <path d="M8.3 17h7.4"/>
+    </svg>`,
+    정책정보: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="통계 그래프">
+      <path d="M4 20V10"/>
+      <path d="M10 20V4"/>
+      <path d="M16 20v-7"/>
+      <path d="M20 20H4"/>
+    </svg>`,
+  };
+  const DEFAULT_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="글">
+    <path d="M6 3h9l4 4v14H6z"/>
+    <path d="M15 3v5h5"/>
+  </svg>`;
+
   function thumbMarkup(post) {
     if (post.thumbnail) {
       return `<img class="post-card-thumb" src="${post.thumbnail}" alt="">`;
     }
-    return `<span class="post-card-thumb post-card-thumb-placeholder" aria-hidden="true">${(post.category || post.title || "다정").charAt(0)}</span>`;
+    const icon = CATEGORY_ICONS[post.category] || DEFAULT_ICON;
+    return `<span class="post-card-thumb post-card-thumb-placeholder" aria-hidden="true">${icon}</span>`;
   }
 
   function renderPosts(posts) {
