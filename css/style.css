@@ -8,14 +8,14 @@
   --accent-hover: #1d4ed8;
   --code-bg: #f1f2f4;
 
-  --hero-grad-start: #ffe4df;
-  --hero-grad-end: #e4f0ff;
-  --hero-text: #3a2420;
-  --hero-text-muted: #7a564d;
-  --tag-bg: #e8735a;
-  --blob-a: rgba(232, 115, 90, 0.14);
-  --blob-b: rgba(96, 165, 250, 0.16);
-  --sidebar-bg: #fbfbfc;
+  --hero-grad-start: #f5f3f0;
+  --hero-grad-end: #e8eaed;
+  --hero-text: #22252a;
+  --hero-text-muted: #666b73;
+  --tag-bg: #b5573f;
+  --blob-a: rgba(55, 65, 81, 0.05);
+  --blob-b: rgba(100, 120, 150, 0.07);
+  --sidebar-bg: #f7f7f8;
 
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
@@ -33,13 +33,13 @@
   --accent-hover: #93c5fd;
   --code-bg: #1f2227;
 
-  --hero-grad-start: #2b2024;
-  --hero-grad-end: #1b2430;
-  --hero-text: #f3e9e6;
-  --hero-text-muted: #cbb9b4;
-  --tag-bg: #c45c46;
-  --blob-a: rgba(232, 115, 90, 0.08);
-  --blob-b: rgba(96, 165, 250, 0.1);
+  --hero-grad-start: #1c1e22;
+  --hero-grad-end: #191c22;
+  --hero-text: #eceef0;
+  --hero-text-muted: #9aa0a8;
+  --tag-bg: #c2715a;
+  --blob-a: rgba(100, 120, 150, 0.06);
+  --blob-b: rgba(70, 80, 100, 0.08);
   --sidebar-bg: #1a1c20;
 
   color-scheme: dark;
