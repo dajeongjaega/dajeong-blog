@@ -8,6 +8,15 @@
   --accent-hover: #1d4ed8;
   --code-bg: #f1f2f4;
 
+  --hero-grad-start: #ffe4df;
+  --hero-grad-end: #e4f0ff;
+  --hero-text: #3a2420;
+  --hero-text-muted: #7a564d;
+  --tag-bg: #e8735a;
+  --blob-a: rgba(232, 115, 90, 0.14);
+  --blob-b: rgba(96, 165, 250, 0.16);
+  --sidebar-bg: #fbfbfc;
+
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 
@@ -23,6 +32,15 @@
   --accent: #60a5fa;
   --accent-hover: #93c5fd;
   --code-bg: #1f2227;
+
+  --hero-grad-start: #2b2024;
+  --hero-grad-end: #1b2430;
+  --hero-text: #f3e9e6;
+  --hero-text-muted: #cbb9b4;
+  --tag-bg: #c45c46;
+  --blob-a: rgba(232, 115, 90, 0.08);
+  --blob-b: rgba(96, 165, 250, 0.1);
+  --sidebar-bg: #1a1c20;
 
   color-scheme: dark;
 }
@@ -56,17 +74,57 @@ a:hover {
   text-decoration: underline;
 }
 
-.site-header {
+/* 배경 장식 (고정, 모든 콘텐츠 뒤) */
+.bg-decor {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-decor::before,
+.bg-decor::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+.bg-decor::before {
+  width: 360px;
+  height: 360px;
+  background: var(--blob-a);
+  top: -100px;
+  left: -120px;
+}
+
+.bg-decor::after {
+  width: 420px;
+  height: 420px;
+  background: var(--blob-b);
+  bottom: -140px;
+  right: -140px;
+}
+
+/* 상단 배너 */
+.hero-banner {
+  background: linear-gradient(135deg, var(--hero-grad-start), var(--hero-grad-end));
   border-bottom: 1px solid var(--border);
 }
 
-.site-header-inner {
-  max-width: 720px;
+.hero-banner-inner {
+  max-width: 960px;
   margin: 0 auto;
-  padding: 1.25rem 1.25rem;
+  padding: 1.5rem 1.25rem 2rem;
+  color: var(--hero-text);
+}
+
+.hero-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 1.25rem;
 }
 
 .site-title {
@@ -74,14 +132,14 @@ a:hover {
   align-items: center;
   gap: 0.5rem;
   font-family: 'Gowun Dodum', var(--font-sans);
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  color: var(--text);
+  color: var(--hero-text);
 }
 
 .site-title:hover {
   text-decoration: none;
-  color: var(--text);
+  color: var(--hero-text);
 }
 
 .site-logo {
@@ -89,9 +147,9 @@ a:hover {
 }
 
 .theme-toggle {
-  border: 1px solid var(--border);
-  background: var(--bg-elevated);
-  color: var(--text);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--hero-text);
   border-radius: 999px;
   width: 2.25rem;
   height: 2.25rem;
@@ -103,82 +161,185 @@ a:hover {
   line-height: 1;
 }
 
+:root[data-theme="dark"] .theme-toggle {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
 .theme-toggle:hover {
-  border-color: var(--accent);
+  border-color: var(--tag-bg);
 }
 
-.service-strip {
-  background: var(--bg-elevated);
-  border-bottom: 1px solid var(--border);
+.hero-eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--hero-text-muted);
 }
 
-.service-strip-inner {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 0.6rem 1.25rem;
+.hero-tags {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   gap: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+
+.hero-tag {
+  background: var(--tag-bg);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.3rem 0.9rem;
+  font-weight: 700;
   font-size: 0.85rem;
 }
 
-.service-tag {
-  background: var(--accent);
-  color: #fff;
-  border-radius: 999px;
-  padding: 0.15rem 0.7rem;
+.hero-tagline {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
   font-weight: 600;
-  font-size: 0.8rem;
-  white-space: nowrap;
 }
 
-.service-strip-status {
-  color: var(--text-muted);
-  margin-left: auto;
+.hero-status {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--hero-text-muted);
 }
 
-main {
-  max-width: 720px;
+/* 2단 레이아웃 (사이드바 + 본문) */
+.layout {
+  max-width: 960px;
   margin: 0 auto;
   padding: 2rem 1.25rem 4rem;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 2rem;
+  align-items: start;
 }
 
-/* 글 목록 */
-.post-list {
+.sidebar {
+  background: var(--sidebar-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.25rem;
+  position: sticky;
+  top: 1.5rem;
+}
+
+.profile-card {
+  text-align: center;
+  padding-bottom: 1.1rem;
+  margin-bottom: 1.1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.profile-logo {
+  display: block;
+  margin: 0 auto 0.6rem;
+}
+
+.profile-name {
+  margin: 0 0 0.5rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.profile-bio {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.sidebar-heading {
+  margin: 0 0 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.category-nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  gap: 0.35rem;
+}
+
+.category-nav a {
+  display: block;
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.category-nav a:hover {
+  background: var(--bg-elevated);
+  text-decoration: none;
+}
+
+.category-nav li.is-active a {
+  background: var(--accent);
+  color: #fff;
+}
+
+.content-count {
+  margin: 0 0 1.25rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* 글 목록 (사진 카드 그리드) */
+.post-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
 }
 
 .post-card {
-  padding-bottom: 1.75rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.post-card:last-child {
-  border-bottom: none;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .post-card-thumb-link {
   display: block;
-  margin-bottom: 0.8rem;
 }
 
 .post-card-thumb {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: 10px;
+}
+
+.post-card-thumb-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--hero-grad-start), var(--hero-grad-end));
+  color: var(--tag-bg);
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: 'Gowun Dodum', var(--font-sans);
+}
+
+.post-card-body {
+  padding: 1rem 1.1rem 1.2rem;
 }
 
 .post-card-title {
   margin: 0 0 0.4rem;
-  font-size: 1.35rem;
+  font-size: 1.05rem;
+  line-height: 1.4;
 }
 
 .post-card-title a {
@@ -187,16 +348,22 @@ main {
 
 .post-card-meta {
   color: var(--text-muted);
-  font-size: 0.875rem;
-  margin: 0 0 0.6rem;
+  font-size: 0.8rem;
+  margin: 0 0 0.5rem;
 }
 
 .post-card-summary {
   margin: 0;
   color: var(--text-muted);
+  font-size: 0.85rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .empty-state, .error-state {
+  grid-column: 1 / -1;
   color: var(--text-muted);
   padding: 2rem 0;
 }
@@ -355,18 +522,34 @@ main {
   padding: 2rem 1.25rem 3rem;
 }
 
+/* 사이드바가 본문 위로 쌓이는 중간 폭 */
+@media (max-width: 760px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .post-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* 모바일 */
 @media (max-width: 480px) {
   body {
     font-size: 16px;
   }
 
-  .site-header-inner {
-    padding: 1rem;
+  .hero-banner-inner {
+    padding: 1.25rem 1rem 1.5rem;
   }
 
-  main {
+  .layout {
     padding: 1.5rem 1rem 3rem;
+    gap: 1.25rem;
   }
 
   .post-title {
@@ -375,10 +558,5 @@ main {
 
   .post-card-title {
     font-size: 1.15rem;
-  }
-
-  .service-strip-status {
-    margin-left: 0;
-    width: 100%;
   }
 }

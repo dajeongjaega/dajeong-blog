@@ -9,45 +9,68 @@
 <script src="js/theme.js"></script>
 </head>
 <body>
-  <header class="site-header">
-    <div class="site-header-inner">
-      <a class="site-title" href="index.html">
-        <svg class="site-logo" width="30" height="30" viewBox="0 0 120 120" role="img" aria-label="하트를 반씩 나눈 두 사람">
+  <div class="bg-decor" aria-hidden="true"></div>
+
+  <header class="hero-banner">
+    <div class="hero-banner-inner">
+      <div class="hero-top">
+        <a class="site-title" href="index.html">
+          <svg class="site-logo" width="30" height="30" viewBox="0 0 120 120" role="img" aria-label="하트를 반씩 나눈 두 사람">
+            <circle cx="36" cy="20" r="9" fill="#E8735A"/>
+            <circle cx="84" cy="20" r="9" fill="#F2A97A"/>
+            <path d="M58 106 L58 58 C54 46 46 40 36 40 C20 40 14 58 22 72 C28 84 42 96 58 106Z" fill="#E8735A"/>
+            <path d="M62 106 L62 58 C66 46 74 40 84 40 C100 40 106 58 98 72 C92 84 78 96 62 106Z" fill="#F2A97A"/>
+          </svg>
+          <span>다정재가복지센터</span>
+        </a>
+        <button class="theme-toggle" data-theme-toggle aria-label="다크 모드로 전환">🌙</button>
+      </div>
+      <p class="hero-eyebrow">어르신 1:1 맞춤 돌봄서비스 전문</p>
+      <div class="hero-tags">
+        <span class="hero-tag">방문요양</span>
+        <span class="hero-tag">방문목욕</span>
+        <span class="hero-tag">방문간호</span>
+      </div>
+      <p class="hero-tagline">내 부모, 내 가족처럼 한결같은 마음으로 모시겠습니다.</p>
+      <p class="hero-status">경상남도 밀양시 · 장기요양기관 지정 신청 절차 진행 중</p>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="profile-card">
+        <svg class="profile-logo" width="48" height="48" viewBox="0 0 120 120" role="img" aria-label="하트를 반씩 나눈 두 사람">
           <circle cx="36" cy="20" r="9" fill="#E8735A"/>
           <circle cx="84" cy="20" r="9" fill="#F2A97A"/>
           <path d="M58 106 L58 58 C54 46 46 40 36 40 C20 40 14 58 22 72 C28 84 42 96 58 106Z" fill="#E8735A"/>
           <path d="M62 106 L62 58 C66 46 74 40 84 40 C100 40 106 58 98 72 C92 84 78 96 62 106Z" fill="#F2A97A"/>
         </svg>
-        <span>다정재가복지센터</span>
-      </a>
-      <button class="theme-toggle" data-theme-toggle aria-label="다크 모드로 전환">🌙</button>
-    </div>
-  </header>
+        <p class="profile-name">다정재가복지센터</p>
+        <p class="profile-bio">경상남도 밀양시에서 준비 중인 재가노인복지시설입니다. 방문요양·방문목욕·방문간호를 1:1 맞춤으로 제공할 예정입니다.</p>
+      </div>
+      <nav class="category-nav" aria-label="카테고리">
+        <h2 class="sidebar-heading">카테고리</h2>
+        <ul id="category-list"></ul>
+      </nav>
+    </aside>
 
-  <div class="service-strip">
-    <div class="service-strip-inner">
-      <span class="service-tag">방문요양</span>
-      <span class="service-tag">방문목욕</span>
-      <span class="service-tag">방문간호</span>
-      <span class="service-strip-status">경상남도 밀양시 · 설치신고·지정 절차 진행 중</span>
-    </div>
+    <main class="content">
+      <a class="back-link" href="index.html">&larr; 목록으로</a>
+      <article>
+        <header class="post-header">
+          <h1 class="post-title" id="post-title">불러오는 중...</h1>
+          <p class="post-meta" id="post-meta"></p>
+        </header>
+        <div class="post-content" id="post-content"></div>
+      </article>
+    </main>
   </div>
-
-  <main>
-    <a class="back-link" href="index.html">&larr; 목록으로</a>
-    <article>
-      <header class="post-header">
-        <h1 class="post-title" id="post-title">불러오는 중...</h1>
-        <p class="post-meta" id="post-meta"></p>
-      </header>
-      <div class="post-content" id="post-content"></div>
-    </article>
-  </main>
 
   <footer class="site-footer">
     <p>마크다운으로 쓰고, 프레임워크 없이 보여줍니다.</p>
   </footer>
 
+  <script src="js/categories.js"></script>
   <script src="js/markdown.js"></script>
   <script src="js/post.js"></script>
 </body>

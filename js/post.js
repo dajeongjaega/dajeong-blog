@@ -34,7 +34,7 @@
 
       document.title = post.title;
       titleEl.textContent = post.title;
-      metaEl.textContent = formatDate(post.date);
+      metaEl.textContent = formatDate(post.date) + (post.category ? " · " + post.category : "");
 
       return fetch(`posts/${post.slug}.md`)
         .then((res) => {

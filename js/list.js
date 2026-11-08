@@ -1,5 +1,6 @@
 (function () {
   const listEl = document.getElementById("post-list");
+  const countEl = document.getElementById("content-count");
 
   function formatDate(dateStr) {
     const d = new Date(dateStr);
@@ -7,22 +8,41 @@
     return d.toLocaleDateString("ko-KR", { year: "numeric", month: "long", day: "numeric" });
   }
 
+  function thumbMarkup(post) {
+    if (post.thumbnail) {
+      return `<img class="post-card-thumb" src="${post.thumbnail}" alt="">`;
+    }
+    return `<span class="post-card-thumb post-card-thumb-placeholder" aria-hidden="true">${(post.category || post.title || "다정").charAt(0)}</span>`;
+  }
+
   function renderPosts(posts) {
-    if (!posts.length) {
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get("category");
+    const filtered = category ? posts.filter((p) => p.category === category) : posts;
+
+    if (countEl) {
+      countEl.textContent = category
+        ? `${category} 카테고리 글 ${filtered.length}개`
+        : `전체 글 ${filtered.length}개`;
+    }
+
+    if (!filtered.length) {
       listEl.innerHTML = '<p class="empty-state">아직 작성된 글이 없습니다.</p>';
       return;
     }
 
-    const sorted = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
+    const sorted = [...filtered].sort((a, b) => new Date(b.date) - new Date(a.date));
 
     listEl.innerHTML = sorted
       .map(
         (post) => `
       <li class="post-card">
-        ${post.thumbnail ? `<a href="post.html?slug=${encodeURIComponent(post.slug)}" class="post-card-thumb-link"><img class="post-card-thumb" src="${post.thumbnail}" alt=""></a>` : ""}
-        <h2 class="post-card-title"><a href="post.html?slug=${encodeURIComponent(post.slug)}">${post.title}</a></h2>
-        <p class="post-card-meta">${formatDate(post.date)}</p>
-        <p class="post-card-summary">${post.summary || ""}</p>
+        <a href="post.html?slug=${encodeURIComponent(post.slug)}" class="post-card-thumb-link">${thumbMarkup(post)}</a>
+        <div class="post-card-body">
+          <h2 class="post-card-title"><a href="post.html?slug=${encodeURIComponent(post.slug)}">${post.title}</a></h2>
+          <p class="post-card-meta">${formatDate(post.date)}${post.category ? " · " + post.category : ""}</p>
+          <p class="post-card-summary">${post.summary || ""}</p>
+        </div>
       </li>`
       )
       .join("");
