@@ -321,21 +321,6 @@ a:hover {
   object-fit: cover;
 }
 
-.post-card-thumb-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, var(--hero-grad-start), var(--hero-grad-end));
-  color: var(--tag-bg);
-}
-
-.post-card-thumb-placeholder svg {
-  width: 42%;
-  height: 42%;
-  max-width: 56px;
-  max-height: 56px;
-}
-
 .post-card-body {
   padding: 1rem 1.1rem 1.2rem;
 }

@@ -8,38 +8,19 @@
     return d.toLocaleDateString("ko-KR", { year: "numeric", month: "long", day: "numeric" });
   }
 
-  // 카테고리별 플레이스홀더 아이콘 (사진이 없는 글에 표시)
-  const CATEGORY_ICONS = {
-    센터소개: `<svg viewBox="0 0 120 120" role="img" aria-label="다정재가복지센터 로고">
-      <circle cx="36" cy="20" r="9" fill="#E8735A"/>
-      <circle cx="84" cy="20" r="9" fill="#F2A97A"/>
-      <path d="M58 106 L58 58 C54 46 46 40 36 40 C20 40 14 58 22 72 C28 84 42 96 58 106Z" fill="#E8735A"/>
-      <path d="M62 106 L62 58 C66 46 74 40 84 40 C100 40 106 58 98 72 C92 84 78 96 62 106Z" fill="#F2A97A"/>
-    </svg>`,
-    운영준비: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="체크리스트">
-      <rect x="5" y="4" width="14" height="17" rx="2"/>
-      <rect x="9" y="2.3" width="6" height="3" rx="1"/>
-      <path d="M8.3 11.2l1.4 1.4 2.6-2.8"/>
-      <path d="M8.3 17h7.4"/>
-    </svg>`,
-    정책정보: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="통계 그래프">
-      <path d="M4 20V10"/>
-      <path d="M10 20V4"/>
-      <path d="M16 20v-7"/>
-      <path d="M20 20H4"/>
-    </svg>`,
+  // 카테고리별 기본 사진 (글에 직접 지정한 thumbnail이 없을 때 표시)
+  // 실제 센터 현장 사진이 아니라 카테고리를 상징하는 일반 사진입니다. 현장 사진이 생기면 각 글의 posts.json에 "thumbnail"을 지정해 교체해 주세요.
+  // 센터소개·운영준비: PAKUTASO(일본 무료 인물 사진, 상업적 이용 가능) / 정책정보: Unsplash 무료 라이선스
+  const CATEGORY_IMAGES = {
+    센터소개: "https://cdn.pakutaso.com/shared/img/thumb/roujinIMGL8123_TP_V.jpg",
+    운영준비: "https://cdn.pakutaso.com/shared/img/thumb/SYU0I9A6789_1_TP_V.jpg",
+    정책정보: "https://images.unsplash.com/photo-1745270917331-787c80129680?auto=format&fit=crop&w=800&q=70",
   };
-  const DEFAULT_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="글">
-    <path d="M6 3h9l4 4v14H6z"/>
-    <path d="M15 3v5h5"/>
-  </svg>`;
+  const DEFAULT_IMAGE = CATEGORY_IMAGES.운영준비;
 
   function thumbMarkup(post) {
-    if (post.thumbnail) {
-      return `<img class="post-card-thumb" src="${post.thumbnail}" alt="">`;
-    }
-    const icon = CATEGORY_ICONS[post.category] || DEFAULT_ICON;
-    return `<span class="post-card-thumb post-card-thumb-placeholder" aria-hidden="true">${icon}</span>`;
+    const src = post.thumbnail || CATEGORY_IMAGES[post.category] || DEFAULT_IMAGE;
+    return `<img class="post-card-thumb" src="${src}" alt="" loading="lazy">`;
   }
 
   function renderPosts(posts) {
