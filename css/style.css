@@ -107,6 +107,37 @@ a:hover {
   border-color: var(--accent);
 }
 
+.service-strip {
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+}
+
+.service-strip-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0.6rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.service-tag {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.15rem 0.7rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.service-strip-status {
+  color: var(--text-muted);
+  margin-left: auto;
+}
+
 main {
   max-width: 720px;
   margin: 0 auto;
@@ -130,6 +161,19 @@ main {
 
 .post-card:last-child {
   border-bottom: none;
+}
+
+.post-card-thumb-link {
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.post-card-thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .post-card-title {
@@ -331,5 +375,10 @@ main {
 
   .post-card-title {
     font-size: 1.15rem;
+  }
+
+  .service-strip-status {
+    margin-left: 0;
+    width: 100%;
   }
 }

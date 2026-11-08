@@ -19,6 +19,7 @@
       .map(
         (post) => `
       <li class="post-card">
+        ${post.thumbnail ? `<a href="post.html?slug=${encodeURIComponent(post.slug)}" class="post-card-thumb-link"><img class="post-card-thumb" src="${post.thumbnail}" alt=""></a>` : ""}
         <h2 class="post-card-title"><a href="post.html?slug=${encodeURIComponent(post.slug)}">${post.title}</a></h2>
         <p class="post-card-meta">${formatDate(post.date)}</p>
         <p class="post-card-summary">${post.summary || ""}</p>

@@ -22,9 +22,12 @@ python -m http.server 8000
   "slug": "my-new-post",
   "title": "글 제목",
   "date": "2026-12-01",
-  "summary": "목록에 보여질 한 줄 요약"
+  "summary": "목록에 보여질 한 줄 요약",
+  "thumbnail": "posts/images/my-photo.jpg"
 }
 ```
+
+- `thumbnail`은 선택 항목입니다. 넣으면 목록에서 글 위에 사진이 보이고, 생략하면 기존처럼 텍스트만 보입니다.
 
 - `slug`는 파일명(확장자 제외)과 반드시 같아야 합니다.
 - 최신 글이 자동으로 위에 정렬됩니다 (날짜 기준).
