@@ -10,11 +10,11 @@
 
   // 카테고리별 기본 사진 (글에 직접 지정한 thumbnail이 없을 때 표시)
   // 실제 센터 현장 사진이 아니라 카테고리를 상징하는 일반 사진입니다. 현장 사진이 생기면 각 글의 posts.json에 "thumbnail"을 지정해 교체해 주세요.
-  // 센터소개·운영준비: PAKUTASO(일본 무료 인물 사진, 상업적 이용 가능) / 정책정보: Unsplash 무료 라이선스
+  // 센터소개·운영준비·정책정보 모두 PAKUTASO(일본 무료 인물 사진, 상업적 이용 가능)
   const CATEGORY_IMAGES = {
     센터소개: "https://cdn.pakutaso.com/shared/img/thumb/roujinIMGL8123_TP_V.jpg",
     운영준비: "https://cdn.pakutaso.com/shared/img/thumb/SYU0I9A6789_1_TP_V.jpg",
-    정책정보: "https://images.unsplash.com/photo-1745270917331-787c80129680?auto=format&fit=crop&w=800&q=70",
+    정책정보: "https://cdn.pakutaso.com/shared/img/thumb/syu-PAUI4956-e_TP_V.jpg",
   };
   const DEFAULT_IMAGE = CATEGORY_IMAGES.운영준비;
 
