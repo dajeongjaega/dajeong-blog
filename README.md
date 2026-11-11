@@ -33,18 +33,23 @@ python -m http.server 8000
 - `slug`는 파일명(확장자 제외)과 반드시 같아야 합니다.
 - 최신 글이 자동으로 위에 정렬됩니다 (날짜 기준).
 
-3. (검색 노출을 위해) `sitemap.xml`에도 같은 `slug`로 `<url>` 항목을 한 줄 추가합니다.
+3. 터미널에서 `node build.js`를 실행합니다. (의존성 없음, Node만 있으면 됩니다)
+   - `index.html`의 글 목록, 글마다의 정적 페이지(`post-<slug>.html`), `sitemap.xml`이 전부 새로 생성됩니다.
+   - 검색엔진(특히 네이버)은 자바스크립트를 실행하지 않고도 글 목록·본문을 읽을 수 있어야 색인이 되므로, 이 빌드 단계를 거쳐 내용이 HTML에 미리 박혀 있는 상태로 커밋·배포해야 합니다.
+   - 바뀐 파일(`index.html`, `post-<slug>.html`, `sitemap.xml`)을 그대로 커밋하면 끝입니다.
 
 ## 구조
 
 ```
-index.html        글 목록 페이지 (배너 + 사이드바 + 글 카드 그리드)
-post.html         글 상세 페이지
+index.html        글 목록 페이지 (build.js가 생성 — 직접 수정하지 말 것)
+post-<slug>.html   글 상세 페이지 (build.js가 글마다 생성 — 직접 수정하지 말 것)
+build.js           posts.json + posts/*.md → index.html / post-<slug>.html / sitemap.xml 생성 스크립트
+post.html          (레거시) ?slug= 쿼리로 글을 보여주던 구버전 방식. 더 이상 새로 만들지 않지만 기존 링크 호환을 위해 남겨둠
 css/style.css     스타일 (배너/사이드바/그리드, 다크 모드, 반응형 포함)
-js/markdown.js    마크다운 → HTML 변환기
+js/markdown.js    마크다운 → HTML 변환기 (브라우저용 · build.js 안에도 동일한 로직이 내장되어 있음)
 js/theme.js       다크 모드 토글
 js/categories.js  사이드바 카테고리 목록 렌더링
-js/list.js        목록 페이지 로직 (카테고리 필터 포함)
-js/post.js        상세 페이지 로직
+js/list.js        index.html의 카테고리 필터(?category=) 클릭 시 목록을 다시 그려주는 용도. 최초 로딩 시 보이는 글 목록 자체는 build.js가 HTML에 미리 넣어둔 것
+js/post.js        레거시 post.html 전용 로직
 posts/            마크다운 글 + posts.json 인덱스
 ```
