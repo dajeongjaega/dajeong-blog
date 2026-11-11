@@ -45,9 +45,9 @@
       .map(
         (post) => `
       <li class="post-card">
-        <a href="post.html?slug=${encodeURIComponent(post.slug)}" class="post-card-thumb-link">${thumbMarkup(post)}</a>
+        <a href="post-${encodeURIComponent(post.slug)}.html" class="post-card-thumb-link">${thumbMarkup(post)}</a>
         <div class="post-card-body">
-          <h2 class="post-card-title"><a href="post.html?slug=${encodeURIComponent(post.slug)}">${post.title}</a></h2>
+          <h2 class="post-card-title"><a href="post-${encodeURIComponent(post.slug)}.html">${post.title}</a></h2>
           <p class="post-card-meta">${formatDate(post.date)}${post.category ? " · " + post.category : ""}</p>
           <p class="post-card-summary">${post.summary || ""}</p>
         </div>
